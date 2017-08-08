@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8">
+		<script src='popup.js'></script>
+		<style type="text/css">
+			.popup_header_style {
+				display: inline-flex;
+				flex-direction: column;
+				justify-content: center;
+				width: 400px;
+			}
+			.popup_header_style .row {
+				display: inline-flex;
+				flex-direction: row;
+				justify-content: center;
+				width: 400px;
+			}
+			.popup_header_style .row input{
+				width: 294px;
+				height: 20px;
+				text-align: center;
+			}
+			.popup_header_style .row button{
+				width: 80px;
+				height: 26px;
+				background-color: #A5DE37;
+				border: solid 0 #A5DE37;
+			}
+			.images_area_style {
+				display: inline-flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				width: 400px;
+				margin: 5px 0;
+			}
+			.images_area_style div {
+				margin: 8px;
+				width: 80px;
+				height: 80px;
+				border: solid 1px #888;
+				border-radius: 4px;
+				box-sizing: border-box;
+				display: inline-flex;
+			}
+			.images_area_style div img {
+				width: 80px;
+				max-height: 80px;
+				height: auto;
+			}
+			.popup_footer_style {
+				display: inline-flex;
+				flex-direction: column;
+				justify-content: center;
+				width: 400px;
+			}
+			.popup_footer_style .row {
+				display: inline-flex;
+				flex-direction: row;
+				justify-content: center;
+				width: 400px;
+				margin: 5px 0;
+			}
+			.popup_footer_style .row button{
+				width: 80px;
+				height: 26px;
+				background-color: #A5DE37;
+				border: solid 0 #A5DE37;
+			}
+			.popup_footer_style .row img{
+				width: 20px;
+				height: 20px;
+			}
+			.popup_footer_style .row h6{
+				line-height: 20px;
+				margin: 0px;
+				color: #888;				
+			}
+		</style>
+	</head>
+	<body style="height:550px">
+		<div id="popup_header" class="popup_header_style">
+			<div class="row">
+				<input type=text id=xpath_text placeholder="input xpath">
+				<button id=getImagesButton>过滤图片</button>
+			</div>
+		</div>
+		<div id="images_area" class="images_area_style">
+		</div>
+		<div id="popup_footer" class="popup_footer_style">
+			<div class="row">
+				<button id=downloadImagesButton>下载图片</button>
+			</div>
+			<div class="row">
+				<img src="./icon/copyright.png"/>
+				<h6>只是源于万视达</h6>
+			</div>
+		</div>
+	</body>
+</html>
