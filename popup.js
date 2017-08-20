@@ -21,7 +21,7 @@ function getImagesByXpath() {
         code: 'var xpath="' + xpath.replace(/"/g,'\\"') + '"',
     }, function () {
         chrome.tabs.executeScript(null, {
-            file: 'send_links.js'
+            file: 'get_links.js'
         })
     })
 }
@@ -39,7 +39,9 @@ function downloadImages() {
 }
 
 chrome.extension.onRequest.addListener(function(links) {
-    showImageUrls(links)
+    if ( links.type == "byXpath" ) {
+        showImageUrls(links.data)
+    }
 })
 
 window.onload = function() {

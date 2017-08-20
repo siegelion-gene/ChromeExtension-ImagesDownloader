@@ -1,16 +1,25 @@
 {
-  "name": "Xpath images downloader",
-  "description": "Download images by xpath",
-  "version": "0.1",
-  "permissions": ["downloads", "<all_urls>"],
-  "browser_action": {
-  	"default_icon": "./icon/icon_128.png",
-  	"default_popup": "popup.html"
-  },
-  "icons": {
-  	"16": "./icon/icon_128.png",
-    "48": "./icon/icon_128.png",
-    "128": "./icon/icon_128.png"
-  },
-  "manifest_version": 2
+   "browser_action": {
+      "default_icon": "./icon/icon_128.png",
+      "default_popup": "popup.html"
+   },
+   "description": "Download images by xpath",
+   "icons": {
+      "128": "./icon/icon_128.png",
+      "16": "./icon/icon_128.png",
+      "48": "./icon/icon_128.png"
+   },
+   "manifest_version": 2,
+   "name": "Xpath images downloader",
+   "permissions": [ 
+      "downloads",
+      "<all_urls>",
+      "contextMenus"
+   ],
+   "background": {
+      "scripts": [
+         "background.js"
+      ]
+   },
+   "version": "0.2"
 }
