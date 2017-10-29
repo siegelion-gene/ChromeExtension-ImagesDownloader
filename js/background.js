@@ -3,7 +3,7 @@ function getImageUrls(info, tab) {
         code: 'var xpath=null;var img_uri="' + info.srcUrl + '";',
     }, function () {
         chrome.tabs.executeScript(tab.id, {
-            file: 'get_links.js'
+            file: './js/get_links.js'
         })
     })
 }

@@ -1,3 +1,4 @@
+// 根据Xpath获取元素
 function getElementByXpath(sXPath) {
     var oEvaluator = new XPathEvaluator();
     var oResult = oEvaluator.evaluate(sXPath, document, null,
@@ -16,7 +17,8 @@ function getElementByXpath(sXPath) {
     return aNodes;
 };
 
-function getSrcByXpath(sXPath) {
+// 根据Xpath获取元素Src属性
+function getElementSrcByXpath(sXPath) {
     var oEvaluator = new XPathEvaluator();
     var oResult = oEvaluator.evaluate(sXPath, document, null,
         XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
@@ -34,7 +36,8 @@ function getSrcByXpath(sXPath) {
     return aNodes;
 };
 
-function getPathTo(element) {
+// 获取元素的Xpath
+function getXpathOfElement(element) {
     if (element.id!=='')
         return "//*[@id='"+element.id+"']";
     
@@ -46,7 +49,7 @@ function getPathTo(element) {
     for (var i= 0; i<siblings.length; i++) {
         var sibling= siblings[i];
         
-        if (sibling===element) return getPathTo(element.parentNode) + '/' + element.tagName.toLowerCase() + '[' + (ix + 1) + ']';
+        if (sibling===element) return getXpathOfElement(element.parentNode) + '/' + element.tagName.toLowerCase() + '[' + (ix + 1) + ']';
         
         if (sibling.nodeType===1 && sibling.tagName === element.tagName) {
             ix++;
@@ -54,6 +57,7 @@ function getPathTo(element) {
     }
 }
 
+// 获取图片链接
 var links = null;
 if( xpath == null) {
     var elements = getElementByXpath("//img");
@@ -65,18 +69,18 @@ if( xpath == null) {
         }
     }
     if (targetElement) {
-        var xpath = getPathTo(targetElement);
+        var xpath = getXpathOfElement(targetElement);
         xpath = xpath.replace(/\[[1-9]*\]/g,'')
         console.log(xpath)
         links = {
             "type":"byMouse",
-            "data":getSrcByXpath(xpath)
+            "data":getElementSrcByXpath(xpath)
         }
     }
 } else {
     links = {
         "type":"byXpath",
-        "data":getSrcByXpath(xpath)
+        "data":getElementSrcByXpath(xpath)
     }
 }
 
