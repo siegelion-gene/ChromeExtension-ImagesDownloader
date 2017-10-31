@@ -15,7 +15,11 @@
       "tabs",
       "downloads",
       "<all_urls>",
-      "contextMenus"
+      "contextMenus",
+      "http://*/",
+      "https://*/",
+      "activeTab",
+      "notifications"
    ],
    "background": {
       "scripts": [

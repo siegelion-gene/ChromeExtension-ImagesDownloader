@@ -29,6 +29,8 @@ function downloadImages(images) {
         chrome.downloads.download({
             url:images[i],
             filename: date + '/image' + i + '.' + suffix
+        },function() {
+            // 有失败的情况，忽略不计
         })
     }
 }
@@ -38,8 +40,11 @@ chrome.extension.onRequest.addListener(function(links) {
     if ( localStorage['isDownloadImmediately']=='true' ) {
         downloadImages(links.data)
     } else {
-        chrome.tabs.create({url:'./page/popup.html',selected:true},function (argument) {
-            console.log(argument)
+        // localStorage['c_data'] = links.data
+        chrome.tabs.create({url:'./page/content.html',selected:true},function (tab) {
+            setTimeout(function () {
+                chrome.extension.sendRequest(links);
+            },500)
         })
     }
 })
