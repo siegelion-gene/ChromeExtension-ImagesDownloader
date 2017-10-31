@@ -1,7 +1,7 @@
 {
    "browser_action": {
-      "default_icon": "./icon/icon_128.png"
-      // "default_popup": "popup.html"
+      "default_icon": "./icon/icon_128.png",
+      "default_popup": "./page/popup.html"
    },
    "description": "Download images by xpath",
    "icons": {
@@ -12,6 +12,7 @@
    "manifest_version": 2,
    "name": "Xpath images downloader",
    "permissions": [ 
+      "tabs",
       "downloads",
       "<all_urls>",
       "contextMenus"

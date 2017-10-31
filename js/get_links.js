@@ -1,5 +1,5 @@
 // 根据Xpath获取元素
-function getElementByXpath(sXPath) {
+function getElementsByXpath(sXPath) {
     var oEvaluator = new XPathEvaluator();
     var oResult = oEvaluator.evaluate(sXPath, document, null,
         XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
@@ -18,7 +18,7 @@ function getElementByXpath(sXPath) {
 };
 
 // 根据Xpath获取元素Src属性
-function getElementSrcByXpath(sXPath) {
+function getElementsSrcByXpath(sXPath) {
     var oEvaluator = new XPathEvaluator();
     var oResult = oEvaluator.evaluate(sXPath, document, null,
         XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
@@ -59,8 +59,8 @@ function getXpathOfElement(element) {
 
 // 获取图片链接
 var links = null;
-if( xpath == null) {
-    var elements = getElementByXpath("//img");
+if ( mode == 'xpath') {
+    var elements = getElementsByXpath("//img");
     var targetElement = null;
     for (var index in elements) {
         if ( elements[index].currentSrc == img_uri) {
@@ -73,15 +73,19 @@ if( xpath == null) {
         xpath = xpath.replace(/\[[1-9]*\]/g,'')
         console.log(xpath)
         links = {
-            "type":"byMouse",
-            "data":getElementSrcByXpath(xpath)
+            "data":getElementsSrcByXpath(xpath)
         }
     }
 } else {
+    var elements = getElementsByXpath("//img");
+    var data = []
+    for (var index in elements) {
+        data.push(elements[index].currentSrc)
+    }
     links = {
-        "type":"byXpath",
-        "data":getElementSrcByXpath(xpath)
+        "data":data
     }
 }
 
+console.log('finished')
 chrome.extension.sendRequest(links);

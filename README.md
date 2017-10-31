@@ -1,5 +1,5 @@
-# xpath-images-downloader
-> 根据Xpath下载图片
+# ChromeExtension-ImagesDownloader
+> 多种方式下载网页内图片
 
 1. 使用Xpath下载
 - 1.1 使用chrome开发者工具拷贝想要下载图片的xpath；
