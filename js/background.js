@@ -24,11 +24,11 @@ function getAllImageUrls(info, tab) {
 function downloadImages(images) {
     var date = new Date().getTime()
     for( var i = 0; i < images.length; i++) {
-        var suffix = images[i].split('.')
-        suffix = suffix[suffix.length-1]
+        var image_name = images[i].split('/')
+        image_name = image_name[image_name.length-1]
         chrome.downloads.download({
             url:images[i],
-            filename: date + '/image' + i + '.' + suffix
+            filename: date + '/' + image_name
         },function() {
             // 有失败的情况，忽略不计
         })
