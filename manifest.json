@@ -3,14 +3,14 @@
       "default_icon": "./icon/icon_128.png",
       "default_popup": "./page/popup.html"
    },
-   "description": "Download images by xpath",
+   "description": "Download images!",
    "icons": {
       "128": "./icon/icon_128.png",
       "16": "./icon/icon_128.png",
       "48": "./icon/icon_128.png"
    },
    "manifest_version": 2,
-   "name": "Xpath images downloader",
+   "name": "Images Downloader",
    "permissions": [ 
       "tabs",
       "downloads",
