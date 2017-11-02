@@ -52,15 +52,15 @@ chrome.extension.onRequest.addListener(function(links) {
 	    h.appendChild(image);
 	    d.appendChild(h);
 	    // footer部分
-	    var f = document.createElement('div');
-	    f.setAttribute('class','item_footer')
-	    f.setAttribute('id','item_footer'+i);
-	    var label = document.createElement('p');
-	    var tl = links.data[i].split('/');
-	    var txt = document.createTextNode(tl[tl.length-1]);
-	    label.appendChild(txt)
-	    f.appendChild(label)
-	    d.appendChild(f);
+	    // var f = document.createElement('div');
+	    // f.setAttribute('class','item_footer')
+	    // f.setAttribute('id','item_footer'+i);
+	    // var label = document.createElement('p');
+	    // var tl = links.data[i].split('/');
+	    // var txt = document.createTextNode(tl[tl.length-1]);
+	    // label.appendChild(txt)
+	    // f.appendChild(label)
+	    // d.appendChild(f);
 	    document.getElementById("content").appendChild(d);
 	}
 })

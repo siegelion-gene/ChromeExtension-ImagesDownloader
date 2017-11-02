@@ -1,0 +1,18 @@
+* {
+    margin:0;
+    padding: 0;
+}
+.btn{
+    height: 30px;
+    padding: 0 6px;
+    vertical-align:baseline;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color:#fff;
+    background-color: #5cb85c;
+    cursor:pointer;
+}
+.btn:hover{
+    background-color: #079D49;
+}
