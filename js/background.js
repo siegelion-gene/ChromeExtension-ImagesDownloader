@@ -26,6 +26,8 @@ function downloadImages(images) {
     for( var i = 0; i < images.length; i++) {
         var image_name = images[i].split('/')
         image_name = image_name[image_name.length-1]
+        if ( image_name.split('.').length == 1)
+            image_name = image_name + '.jpg'
         chrome.downloads.download({
             url:images[i],
             filename: date + '/' + image_name

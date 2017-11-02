@@ -20,6 +20,8 @@ function Download() {
     		continue;
         var image_name = local_links[i].split('/')
         image_name = image_name[image_name.length-1]
+        if ( image_name.split('.').length == 1)
+            image_name = image_name + '.jpg'
         chrome.downloads.download({
             url:local_links[i],
             filename: date + '/' + image_name
