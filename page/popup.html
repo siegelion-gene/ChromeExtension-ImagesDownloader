@@ -4,17 +4,22 @@
 		<script src='../js/popup.js'></script>
 		<link rel="stylesheet" type="text/css" href="../css/popup.css">
 	</head>
-	<body style="height:30px;width: 140px;margin: 0px;">
-		<div style="height:30px;">
-			<div class='c_row' style="background-color: limegreen;">
-				<p>是否直接下载</p>
-				<input type="checkbox" id="isDownloadImmediately"/>
-			</div>
+	<body>
+	  <div class="panel">
+		  <div class="panel-heading">
+		    <label>
+		      <input type="checkbox"  id='isDownloadImmediately'>快速下载
+		      <input type="button" class='btn' value='打开文件' id='openFile'>
+		    </label>
+		  </div>
+		  <div class="panel-body">
+		    <p>基本使用:</p>
+				<ul>
+					<li>1.在页面空白处单击右键，选择'下载图片'，系统会以列表的形式展示页面中的图片以供下载。</li>
+					<li>2.在心仪图片上单击右键，选择'下载此类图片'，系统将智能过滤掉其他类型的图片。</li>
+					<li>3.勾选<strong>快速下载</strong>后，系统将自动为您保存图片，无需进入选择页。</li>
+				</ul>
+		  </div>
 		</div>
-<!-- 		<div style="height:30px;">
-			<div class='c_row c_row_hover' style="background-color: dodgerblue;">
-				<p>正则下载</p>
-			</div>
-		</div> -->
 	</body>
 </html>
