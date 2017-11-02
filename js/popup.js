@@ -9,6 +9,6 @@ window.onload = function() {
       localStorage.setItem('isDownloadImmediately', flag)
     })
     // 打开默认下载文件夹
-    btn.addEventListener('click',function(){
-    })
+    // btn.addEventListener('click',function(){
+    // })
 }
