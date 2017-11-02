@@ -1,17 +1,17 @@
 var local_links = null;
 var ignore_flag = null;
 function DeleteImage(event) {
-	var index = event.currentTarget.id.substr(4);
-	index = parseInt(index);
-	var color = document.getElementById('item_footer'+index).style.backgroundColor;
-	if (color.length > 0) {
-		document.getElementById('item_footer'+index).style.backgroundColor = ''
-		ignore_flag[index] = 1;
-	} else {
-		document.getElementById('item_footer'+index).style.backgroundColor = 'red'
-		ignore_flag[index] = 0;
-	}
-}
+	var index = parseInt(event.currentTarget.id.substr(4))
+  var item = document.querySelectorAll('.item')[index]
+  var flag = item.classList.contains('cover')
+  if(flag){
+    item.classList.remove('cover')
+    ignore_flag[index] = 1
+  }else{
+    item.classList.add('cover')
+    ignore_flag[index] = 0
+  }
+} 
 
 function Download() {
 	var date = new Date().getTime()
