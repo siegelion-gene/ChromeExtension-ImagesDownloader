@@ -51,6 +51,13 @@ body {
     box-shadow: 1px 0 5px #999;
     position: relative;
     overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.item:hover{
+    transform: translateY(-6px);
+    box-shadow: 1px 5px 8px #999;
+    transition: all 0.4s ease;
 }
 
 .item_header {
