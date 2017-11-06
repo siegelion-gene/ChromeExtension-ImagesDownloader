@@ -102,6 +102,7 @@ body {
 
 .footer{
     text-align: center;
+    margin-top: 20px;
 }
 
 .cover:after {
@@ -119,4 +120,18 @@ body {
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,.3);
+}
+
+.popup {
+    z-index: 999;
+    padding : 20px;
+    position: fixed;  
+    width: 600px;  
+    height: 400px;  
+    left: 0px;  
+    right: 0px;  
+    bottom: 0px;  
+    top: 0px;  
+    margin: auto;
+    background-color: red;
 }
