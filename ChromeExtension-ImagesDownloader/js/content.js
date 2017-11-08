@@ -1,9 +1,9 @@
 var popup_configure = '\
 		<div id="configure_page" class="popup" style="visibility: hidden"> \
 			<form> \
-				宽：<input type="text" id="firstname"> \
+				宽：<input type="text" id="filter_w"> \
 				<br /> \
-				高：<input type="text" id="lastname"> \
+				高：<input type="text" id="filter_h"> \
 				<br /> \
 				<input id="lessthan_btn" type="button" value="小于"> \
 				<input id="morethan_btn" type="button" value="大于"> \
@@ -13,7 +13,7 @@ var popup_configure = '\
 var popup_regex = '\
 		<div class="popup"> \
 			<form> \
-				正则表达式：<input type="text" id="firstname"> \
+				正则表达式：<input type="text" id="regex_url"> \
 				<input type="radio" name="regex" checked> \
 				从 \
 				<input type="text" value="0"> \
@@ -60,20 +60,20 @@ var normal_page = ' \
 var local_links = null;
 var ignore_flag = null;
 // 图片标记为删除，即不下载
-function mark_delete(node) {
+function mark_delete(node,index) {
 	var flag = node.classList.contains('cover')
 	if(flag){
-		item.classList.remove('cover')
+		node.classList.remove('cover')
 		ignore_flag[index] = 1
 	}else{
-		item.classList.add('cover')
+		node.classList.add('cover')
 		ignore_flag[index] = 0
 	}
 }
 function DeleteImage(event) {
 	var index = parseInt(event.currentTarget.id.substr(4))
 	var item = document.querySelectorAll('.item')[index]
-	mark_delete(item)
+	mark_delete(item,index)
 } 
 // 下载图片
 function Download() {
@@ -96,26 +96,26 @@ function Download() {
 }
 // 过滤图片
 function morethan(w,h,sw,sh) {
-	if ( sw != 0)
+	if ( w != 0)
 		if ( sw > w) 
 			return true;
-	if ( sh != 0)
+	if ( h != 0)
 		if ( sw > h)
 			return true;
 	return false;
 }
 function lessthan(w,h,sw,sh) {
-	if ( sw != 0)
+	if ( w != 0)
 		if ( sw < w) 
 			return true;
-	if ( sh != 0)
+	if ( h != 0)
 		if ( sw < h)
 			return true;
 	return false;
 }
 function images_filter(event) {
-	var w = document.getElementById('filter_w')
-	var h = document.getElementById('filter_h')
+	var w = document.getElementById('filter_w').value.length>0?parseInt(document.getElementById('filter_w').value):0;
+	var h = document.getElementById('filter_h').value.length>0?parseInt(document.getElementById('filter_h').value):0;
 	var compare;
 	if (event.target.id == 'lessthan_btn') {
 		compare = lessthan
@@ -124,9 +124,9 @@ function images_filter(event) {
 	}
 	var allitems = document.querySelectorAll('.item')
 	for (var i = 0; i < allitems.length; i++) {
-		if( compare(w,h,allitems[i].children[0].children[0].style.width,
-				allitems[i].children[0].children[0].style.height)) {
-			mark_delete(allitems[i])
+		if( compare(w,h,allitems[i].children[0].children[0].naturalWidth,
+				allitems[i].children[0].children[0].naturalHeight)) {
+			mark_delete(allitems[i],i)
 		}
 	}
 }
@@ -174,6 +174,10 @@ function fill_page(links) {
 		} else {
 			document.getElementById('configure_page').style.visibility = 'visible'
 		}
+		if (!document.getElementById('lessthan_btn').onclick)
+			document.getElementById('lessthan_btn').onclick = images_filter;
+		if (!document.getElementById('morethan_btn').onclick)
+			document.getElementById('morethan_btn').onclick = images_filter;
 	};
 }
 // 正则表达式下载
@@ -202,5 +206,5 @@ window.onload = function () {
 	if ( window.location.href.indexOf('regex') > 0) {
 		document.getElementsByTagName('body')[0].innerHTML += popup_regex;
 	}
-	document.getElementsByTagName('body')[0].innerHTML += popup_configure
+	document.getElementsByTagName('body')[0].innerHTML += popup_configure;
 }
