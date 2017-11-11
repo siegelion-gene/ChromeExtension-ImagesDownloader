@@ -60,7 +60,6 @@ body {
 .item:hover{
     transform: translateY(-6px);
     box-shadow: 1px 5px 8px #999;
-    transition: all 0.4s ease;
 }
 
 .item_header {
@@ -105,6 +104,11 @@ body {
     margin-top: 20px;
 }
 
+/*你喜欢的模糊效果*/
+/*.cover{
+    filter:blur(3px);
+}*/
+
 .cover:after {
     content:'x';
     font-size: 160px;
@@ -122,16 +126,22 @@ body {
     background-color: rgba(0,0,0,.3);
 }
 
-.popup {
-    z-index: 999;
-    padding : 20px;
-    position: fixed;  
-    width: 600px;  
-    height: 400px;  
-    left: 0px;  
-    right: 0px;  
-    bottom: 0px;  
-    top: 0px;  
-    margin: auto;
-    background-color: red;
+#configure_page{
+    height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-top:10px;
+}
+#configure_page input{
+    vertical-align: baseline;
+}
+#configure_page.active{
+    height: 30px;
+    line-height: 30px;
+}
+
+.popup input[type='text']{
+    width: 30px;
+    border-radius: 3px;
+    border:1px solid #ccc;
 }

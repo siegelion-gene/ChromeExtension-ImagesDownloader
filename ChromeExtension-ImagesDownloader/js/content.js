@@ -59,8 +59,15 @@ var normal_page = ' \
 
 var local_links = null;
 var ignore_flag = null;
-// 图片标记为删除，即不下载
+// 设置制定图片为删除状态
 function mark_delete(node,index) {
+	node.classList.add('cover')
+	ignore_flag[index] = 0
+}
+// 点击任意图片切换删除状态
+function toggleDeleteState(event) {
+	var index = parseInt(event.currentTarget.id.substr(4))
+	var node = document.querySelectorAll('.item')[index]
 	var flag = node.classList.contains('cover')
 	if(flag){
 		node.classList.remove('cover')
@@ -69,11 +76,6 @@ function mark_delete(node,index) {
 		node.classList.add('cover')
 		ignore_flag[index] = 0
 	}
-}
-function DeleteImage(event) {
-	var index = parseInt(event.currentTarget.id.substr(4))
-	var item = document.querySelectorAll('.item')[index]
-	mark_delete(item,index)
 } 
 // 下载图片
 function Download() {
@@ -113,11 +115,27 @@ function lessthan(w,h,sw,sh) {
 			return true;
 	return false;
 }
-function images_filter(event) {
-	var w = document.getElementById('filter_w').value.length>0?parseInt(document.getElementById('filter_w').value):0;
-	var h = document.getElementById('filter_h').value.length>0?parseInt(document.getElementById('filter_h').value):0;
+function reset(){
+	var allitems = document.querySelectorAll('.item')
+	;[].forEach.call(allitems,(item,i)=>{
+		item.classList.remove('cover')
+		ignore_flag[i] = 1
+	})
+	document.getElementById('filter_w').value = ''
+	document.getElementById('filter_h').value = ''
+	document.querySelectorAll('input[type="radio"]')[0].checked = true
+}
+function images_filter() {
+	// 获取元素
+	var filter_w = document.getElementById('filter_w')
+	var filter_h = document.getElementById('filter_h')
+	// 短路表达式获取输入值
+	var w = parseInt(filter_w.value.trim()) || 0
+	var h = parseInt(filter_h.value.trim()) || 0
+	// 确定处理方式
+	var radios = document.querySelectorAll('input[type="radio"]')
 	var compare;
-	if (event.target.id == 'lessthan_btn') {
+	if (radios[0].checked) {
 		compare = lessthan
 	} else {
 		compare = morethan
@@ -133,7 +151,7 @@ function images_filter(event) {
 // 填充界面
 function fill_page(links) {
 	// 先添加一个默认页面
-	document.getElementsByTagName('body')[0].innerHTML += normal_page;
+	//document.getElementsByTagName('body')[0].innerHTML += normal_page;
 	local_links = [];
 	ignore_flag = [];
 	for ( var i = 0; i < links.length; i++) { 
@@ -145,40 +163,32 @@ function fill_page(links) {
 		var d = document.createElement("div"); 
 		d.setAttribute("class",'item');
 		d.setAttribute('id','item'+i);
-		d.onclick = DeleteImage;
-		// header部分
+		d.onclick = toggleDeleteState;
+		// 主体部分
 		var h = document.createElement("div"); 
 		h.setAttribute("class",'item_header');
 		var image = document.createElement("img"); 
 		image.setAttribute("src",links[i]);
-	    h.appendChild(image);
-	    d.appendChild(h);
-	    // footer部分
-	    // var f = document.createElement('div');
-	    // f.setAttribute('class','item_footer')
-	    // f.setAttribute('id','item_footer'+i);
-	    // var label = document.createElement('p');
-	    // var tl = links[i].split('/');
-	    // var txt = document.createTextNode(tl[tl.length-1]);
-	    // label.appendChild(txt)
-	    // f.appendChild(label)
-	    // d.appendChild(f);
-	    document.getElementById("content").appendChild(d);
+    h.appendChild(image);
+    d.appendChild(h);
+    document.getElementById("content").appendChild(d);
 	}
 	// 增加下载事件响应
 	document.getElementById('download_btn').onclick = Download;
 	// 控制配置页面显示和消失
 	document.getElementById('configure_btn').onclick = function() {
-		if ( document.getElementById('configure_page').style.visibility == 'visible') {
-			document.getElementById('configure_page').style.visibility = 'hidden'
-		} else {
-			document.getElementById('configure_page').style.visibility = 'visible'
+		var configure_page = document.getElementById('configure_page')
+		var confirm_btn = document.getElementById('confirm_btn')
+		var flag = configure_page.classList.contains('active')
+		if(flag){
+			configure_page.classList.remove('active')
+		}else{
+			configure_page.classList.add('active')
 		}
-		if (!document.getElementById('lessthan_btn').onclick)
-			document.getElementById('lessthan_btn').onclick = images_filter;
-		if (!document.getElementById('morethan_btn').onclick)
-			document.getElementById('morethan_btn').onclick = images_filter;
+		if (!confirm_btn.onclick) {confirm_btn.onclick = images_filter}
 	};
+	// 控制重置按钮
+	document.querySelector('#reset_btn').onclick = reset
 }
 // 正则表达式下载
 function regex_maker() {
@@ -206,5 +216,5 @@ window.onload = function () {
 	if ( window.location.href.indexOf('regex') > 0) {
 		document.getElementsByTagName('body')[0].innerHTML += popup_regex;
 	}
-	document.getElementsByTagName('body')[0].innerHTML += popup_configure;
+	//document.getElementsByTagName('body')[0].innerHTML += popup_configure;
 }

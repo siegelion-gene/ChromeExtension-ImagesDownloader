@@ -10,9 +10,20 @@
     outline: none;
     border: none;
     color:#fff;
-    background-color: #5cb85c;
     cursor:pointer;
 }
-.btn:hover{
+.btn-primary{
+    background-color: #5cb85c;
+}
+.btn-primary:hover{
     background-color: #079D49;
+}
+.btn-danger{
+    background-color: #d9534f;
+}
+.btn-danger:hover{
+    background-color: #E21C1A;
+}
+.btn-small{
+    height: 25px;
 }
