@@ -7,6 +7,30 @@
 		<script type="text/javascript" async="async"  src='../js/canvas-effect.js'></script>
 	</head>
 	<body>
+		<div class="container">
+			<div id="content" class="wrapper"></div>
+			<div class="footer">
+				<button id="configure_btn" type="button" class="btn btn-primary">简单筛选</button>
+				<button id="download_btn" type="button" class="btn btn-primary">下载</button>
+				<button type="button" class="btn btn-primary">高级筛选</button>
+				<div id="configure_page" class="popup">
+					<form>
+						去掉尺寸&nbsp
+						<label>
+						  <input type="radio" name="radioOptions" value='lessthan' checked>小于
+						</label>
+						<label>
+						  <input type="radio" name="radioOptions" value='morethan'>大于
+						</label>
+						&nbsp宽：<input type="text" id="filter_w">
+						高：<input type="text" id="filter_h">&nbsp的图片
+						<button id="confirm_btn" type="button" class="btn btn-primary btn-small">确定</button>
+						<button id="reset_btn" type="button" class="btn btn-danger btn-small">重置</button>
+					</form>
+				</div>
+				<p class="tips">注：点击去掉不需要的图片！</p>
+			</div> 
+		</div>
 		<canvas id="canvasarea" width="100%" height="100%" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;"></canvas>
 	</body>
 </html>
