@@ -1,27 +1,3 @@
-var popup_configure = '\
-<div id="configure_page" class="popup" style="visibility: hidden"> \
-<form> \
-宽：<input type="text" id="filter_w"> \
-<br /> \
-高：<input type="text" id="filter_h"> \
-<br /> \
-<input id="lessthan_btn" type="button" value="小于"> \
-<input id="morethan_btn" type="button" value="大于"> \
-</form> \
-<p class="tips">注：填写要过滤的图片的宽高，不填则不作为过滤条件！</p> \
-</div>'
-var normal_page = ' \
-<div class="container"> \
-<div class="footer"> \
-<button id="configure_btn" type="button" class="btn">配置</button> \
-</div> \
-<div id="content" class="wrapper"></div> \
-<div class="footer"> \
-<button id="download_btn" type="button">下载</button> \
-<p class="tips">注：点击去掉不需要的图片！</p> \
-</div> \
-</div>'
-
 var local_links = null;
 var ignore_flag = null;
 // 设置制定图片为删除状态
