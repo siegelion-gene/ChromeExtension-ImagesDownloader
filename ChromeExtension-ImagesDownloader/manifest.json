@@ -3,14 +3,14 @@
       "default_icon": "./icon/icon_128.png",
       "default_popup": "./page/popup.html"
    },
-   "description": "Download images!",
+   "description": "找出页面中所有或者当前类型的图片，并提供按分辨率过滤图片，简单实用～",
    "icons": {
       "128": "./icon/icon_128.png",
       "16": "./icon/icon_128.png",
       "48": "./icon/icon_128.png"
    },
    "manifest_version": 2,
-   "name": "Images Downloader",
+   "name": "图片批量下载",
    "permissions": [ 
       "tabs",
       "downloads",
@@ -26,5 +26,5 @@
          "./js/background.js"
       ]
    },
-   "version": "0.5"
+   "version": "0.4"
 }
