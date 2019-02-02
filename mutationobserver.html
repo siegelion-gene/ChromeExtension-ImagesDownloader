@@ -1,0 +1,41 @@
+<html>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+var i=0;
+
+function addCustomChild(){
+	var target = document.getElementById('target');
+	d = document.createElement('div');
+	d.innerText = i;
+	target.appendChild(d);
+	i++;
+}
+function replaceText(obj){
+	obj.innerText="hi"+obj.innerText
+}
+
+var observe=new MutationObserver(function (mutations,observe) {
+	m = $(mutations)
+	m.each(function(){
+		$(this.addedNodes).each(function(){replaceText(this)})
+		
+		console.log(this)
+		console.log(this.addedNodes)
+	})
+});
+
+$(function(){observe.observe(document.getElementById('target'),{childList: true, subtree: true});})
+
+</script>
+
+<body>
+	<div id='target' class='block' name='target'>
+		target
+	</div>
+	<input type="button" value="add" onclick="addCustomChild()"/>
+</body>
+
+
+
+
+</html>
